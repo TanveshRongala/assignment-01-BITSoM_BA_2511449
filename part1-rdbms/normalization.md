@@ -48,3 +48,14 @@ For example, `product_id = P008` appears only once in the file:
   - `unit_price = 2100`
 
 If row 13 is deleted, all information about product `P008` (Webcam) is lost from the database, even though the product itself may still exist in the business. This is a **delete anomaly**.
+
+
+## Normalization Justification
+
+I refute the manager’s claim that keeping everything in one table is “simpler.” While a single flat table may look easy at first, the dataset already shows why that approach causes practical data quality problems. In the CSV, the same sales representative details are repeated across many order rows. For example, `sales_rep_id = SR01` appears multiple times, but the `office_address` is not stored consistently: one row shows **“Mumbai HQ, Nariman Point, Mumbai - 400021”** while another shows **“Mumbai HQ, Nariman Pt, Mumbai - 400021.”** This is a clear update anomaly. If the company changes the address again, every related row must be updated, increasing the chance of inconsistency.
+
+The flat design also creates insert anomalies. Product details such as `product_id`, `product_name`, `category`, and `unit_price` only exist inside order rows. That means a new product cannot be added to the system unless someone creates a fake or premature order for it. This is not simpler for business operations.
+
+Delete anomalies are another risk. In the dataset, `product_id = P008` (`Webcam`) appears only once. If that order row is deleted, the company loses all stored information about that product, even if the product still exists in inventory.
+
+Normalization to 3NF is therefore not over-engineering; it is a practical way to separate customers, products, sales representatives, and orders into stable tables. This reduces duplication, prevents inconsistent updates, supports adding master data independently, and avoids accidental data loss. In this case, normalization makes the database more reliable, maintainable, and scalable.
