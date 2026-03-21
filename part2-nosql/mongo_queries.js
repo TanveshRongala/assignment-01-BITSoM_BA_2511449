@@ -1,6 +1,6 @@
-// part2-nosql/mongo_queries.js
-
-// OP1: insertMany() — insert all 3 documents from sample_documents.json
+---------------------------------------------------------------------------
+## OP1: insertMany() — insert all 3 documents from sample_documents.json
+---------------------------------------------------------------------------
 db.products.insertMany([
   {
     _id: "ELEC1001",
@@ -96,7 +96,9 @@ db.products.insertMany([
   }
 ]);
 
-// OP2: find() — retrieve all Electronics products with price > 20000
+-----------------------------------------------------------------------
+## OP2: find() — retrieve all Electronics products with price > 20000
+-----------------------------------------------------------------------
 db.products.find(
   {
     category: "Electronics",
@@ -104,7 +106,9 @@ db.products.find(
   }
 );
 
-// OP3: find() — retrieve all Groceries expiring before 2025-01-01
+---------------------------------------------------------------------
+## OP3: find() — retrieve all Groceries expiring before 2025-01-01
+---------------------------------------------------------------------
 db.products.find(
   {
     category: "Groceries",
@@ -112,7 +116,9 @@ db.products.find(
   }
 );
 
-// OP4: updateOne() — add a "discount_percent" field to a specific product
+----------------------------------------------------------------------------
+## OP4: updateOne() — add a "discount_percent" field to a specific product
+----------------------------------------------------------------------------
 db.products.updateOne(
   { _id: "ELEC1001" },
   {
@@ -122,7 +128,9 @@ db.products.updateOne(
   }
 );
 
-// OP5: createIndex() — create an index on category field and explain why
+----------------------------------------------------------------------------
+## OP5: createIndex() — create an index on category field and explain why
+----------------------------------------------------------------------------
 db.products.createIndex({ category: 1 });
 
 // Explanation:
