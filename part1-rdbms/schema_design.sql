@@ -1,13 +1,13 @@
--- part1-rdbms/schema_design.sql
-
--- Drop tables first (child before parent)
+---------------------------------------------
+## Drop tables first (child before parent)
+---------------------------------------------
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS sales_reps;
 
 -- =========================================================
--- 1. CUSTOMERS
+## 1. CUSTOMERS
 -- =========================================================
 CREATE TABLE customers (
     customer_id    VARCHAR(10) PRIMARY KEY,
@@ -27,7 +27,7 @@ INSERT INTO customers (customer_id, customer_name, customer_email, customer_city
 ('C008', 'Kavya Rao', 'kavya@gmail.com', 'Hyderabad');
 
 -- =========================================================
--- 2. PRODUCTS
+## 2. PRODUCTS
 -- =========================================================
 CREATE TABLE products (
     product_id    VARCHAR(10) PRIMARY KEY,
@@ -47,7 +47,7 @@ INSERT INTO products (product_id, product_name, category, unit_price) VALUES
 ('P008', 'Webcam', 'Electronics', 2100.00);
 
 -- =========================================================
--- 3. SALES REPRESENTATIVES
+## 3. SALES REPRESENTATIVES
 -- =========================================================
 CREATE TABLE sales_reps (
     sales_rep_id     VARCHAR(10) PRIMARY KEY,
@@ -56,14 +56,16 @@ CREATE TABLE sales_reps (
     office_address   VARCHAR(255) NOT NULL
 );
 
--- Standardized SR01 address to remove inconsistency
+-----------------------------------------------------
+## Standardized SR01 address to remove inconsistency
+-----------------------------------------------------
 INSERT INTO sales_reps (sales_rep_id, sales_rep_name, sales_rep_email, office_address) VALUES
 ('SR01', 'Deepak Joshi', 'deepak@corp.com', 'Mumbai HQ, Nariman Point, Mumbai - 400021'),
 ('SR02', 'Anita Desai', 'anita@corp.com', 'Delhi Office, Connaught Place, New Delhi - 110001'),
 ('SR03', 'Ravi Kumar', 'ravi@corp.com', 'South Zone, MG Road, Bangalore - 560001');
 
 -- =========================================================
--- 4. ORDERS
+## 4. ORDERS
 -- =========================================================
 CREATE TABLE orders (
     order_id       VARCHAR(10) PRIMARY KEY,
