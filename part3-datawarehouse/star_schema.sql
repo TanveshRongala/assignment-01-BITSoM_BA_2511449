@@ -1,16 +1,18 @@
--- part3-datawarehouse/star_schema.sql
-
--- Drop tables (fact first due to FK dependencies)
+----------------------------------------------------
+## Drop tables (fact first due to FK dependencies)
+----------------------------------------------------
 DROP TABLE IF EXISTS fact_sales;
 DROP TABLE IF EXISTS dim_date;
 DROP TABLE IF EXISTS dim_store;
 DROP TABLE IF EXISTS dim_product;
 
 -- =========================================================
--- DIMENSION TABLES
+## DIMENSION TABLES
 -- =========================================================
 
--- 1. DATE DIMENSION (standardized YYYY-MM-DD)
+------------------------------------------------
+## 1. DATE DIMENSION (standardized YYYY-MM-DD)
+------------------------------------------------
 CREATE TABLE dim_date (
     date_id      DATE PRIMARY KEY,
     year         INT NOT NULL,
@@ -27,7 +29,9 @@ INSERT INTO dim_date (date_id, year, month, day, quarter) VALUES
 ('2023-05-18', 2023, 5, 18, 2),
 ('2023-06-25', 2023, 6, 25, 2);
 
--- 2. STORE DIMENSION (cleaned city names, no NULLs)
+------------------------------------------------------
+## 2. STORE DIMENSION (cleaned city names, no NULLs)
+------------------------------------------------------
 CREATE TABLE dim_store (
     store_id     VARCHAR(10) PRIMARY KEY,
     store_name   VARCHAR(100) NOT NULL,
@@ -40,7 +44,9 @@ INSERT INTO dim_store (store_id, store_name, city, region) VALUES
 ('S002', 'City Center Store', 'Delhi', 'North'),
 ('S003', 'Tech Park Store', 'Bangalore', 'South');
 
--- 3. PRODUCT DIMENSION (standardized category casing)
+--------------------------------------------------------
+## 3. PRODUCT DIMENSION (standardized category casing)
+--------------------------------------------------------
 CREATE TABLE dim_product (
     product_id    VARCHAR(10) PRIMARY KEY,
     product_name  VARCHAR(100) NOT NULL,
@@ -54,8 +60,9 @@ INSERT INTO dim_product (product_id, product_name, category) VALUES
 ('P004', 'Headphones', 'Electronics'),
 ('P005', 'Jeans', 'Clothing');
 
+
 -- =========================================================
--- FACT TABLE
+## FACT TABLE
 -- =========================================================
 
 CREATE TABLE fact_sales (
@@ -72,7 +79,7 @@ CREATE TABLE fact_sales (
 );
 
 -- =========================================================
--- FACT DATA (CLEANED)
+## FACT DATA (CLEANED)
 -- - Dates standardized to YYYY-MM-DD
 -- - Categories consistent via dim_product
 -- - No NULL values
@@ -91,7 +98,7 @@ INSERT INTO fact_sales (sales_id, date_id, store_id, product_id, quantity, total
 (10, '2023-06-25', 'S001', 'P005', 3, 6000.00);
 
 -- =========================================================
--- DESIGN NOTES
+## DESIGN NOTES
 -- =========================================================
 -- fact_sales captures measurable metrics: quantity, total_amount
 -- dim_date standardizes inconsistent date formats
