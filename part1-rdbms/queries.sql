@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------
-#Q1: List all customers from Mumbai along with their total order value
+## Q1: List all customers from Mumbai along with their total order value
 ---------------------------------------------------------------------------
 SELECT
     c.customer_id,
@@ -16,7 +16,7 @@ GROUP BY c.customer_id, c.customer_name, c.customer_city
 ORDER BY total_order_value DESC, c.customer_name;
 
 --------------------------------------------------------
-#Q2: Find the top 3 products by total quantity sold
+## Q2: Find the top 3 products by total quantity sold
 --------------------------------------------------------
 SELECT
     p.product_id,
@@ -31,7 +31,7 @@ ORDER BY total_quantity_sold DESC, p.product_name
 LIMIT 3;
 
 ------------------------------------------------------------------------------------------
-#Q3: List all sales representatives and the number of unique customers they have handled
+## Q3: List all sales representatives and the number of unique customers they have handled
 ------------------------------------------------------------------------------------------
 SELECT
     s.sales_rep_id,
@@ -44,7 +44,7 @@ GROUP BY s.sales_rep_id, s.sales_rep_name
 ORDER BY unique_customers_handled DESC, s.sales_rep_name;
 
 -----------------------------------------------------------------------------------------
-#Q4: Find all orders where the total value exceeds 10,000, sorted by value descending
+## Q4: Find all orders where the total value exceeds 10,000, sorted by value descending
 -----------------------------------------------------------------------------------------
 SELECT
     o.order_id,
@@ -63,7 +63,7 @@ WHERE (p.unit_price * o.quantity) > 10000
 ORDER BY total_value DESC, o.order_id;
 
 ------------------------------------------------------------
-#Q5: Identify any products that have never been ordered
+## Q5: Identify any products that have never been ordered
 ------------------------------------------------------------
 SELECT
     p.product_id,
