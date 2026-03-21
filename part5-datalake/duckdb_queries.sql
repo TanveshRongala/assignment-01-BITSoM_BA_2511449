@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
-#Q1: List all customers along with the total number of orders they have placed
+## Q1: List all customers along with the total number of orders they have placed
 --------------------------------------------------------------------------------
 SELECT
     c.customer_id,
@@ -12,7 +12,7 @@ GROUP BY c.customer_id, c.customer_name
 ORDER BY total_orders DESC;
 
 -----------------------------------------------------
-#Q2: Find the top 3 customers by total order value
+## Q2: Find the top 3 customers by total order value
 -----------------------------------------------------
 SELECT
     c.customer_id,
@@ -26,7 +26,7 @@ ORDER BY total_spent DESC
 LIMIT 3;
 
 ---------------------------------------------------------------
-#Q3: List all products purchased by customers from Bangalore
+## Q3: List all products purchased by customers from Bangalore
 ---------------------------------------------------------------
 SELECT DISTINCT
     p.product_id,
@@ -39,7 +39,7 @@ JOIN read_parquet('products.parquet') p
 WHERE c.city = 'Bangalore';
 
 -------------------------------------------------------------------------------------------
-#Q4: Join all three files to show: customer name, order date, product name, and quantity
+## Q4: Join all three files to show: customer name, order date, product name, and quantity
 -------------------------------------------------------------------------------------------
 SELECT
     c.customer_name,
