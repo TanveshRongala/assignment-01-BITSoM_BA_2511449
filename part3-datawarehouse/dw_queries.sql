@@ -1,6 +1,6 @@
--- part3-datawarehouse/dw_queries.sql
-
--- Q1: Total sales revenue by product category for each month
+---------------------------------------------------------------
+## Q1: Total sales revenue by product category for each month
+---------------------------------------------------------------
 SELECT
     d.year,
     d.month,
@@ -14,7 +14,9 @@ JOIN dim_product p
 GROUP BY d.year, d.month, p.category
 ORDER BY d.year, d.month, p.category;
 
--- Q2: Top 2 performing stores by total revenue
+-------------------------------------------------
+## Q2: Top 2 performing stores by total revenue
+-------------------------------------------------
 SELECT
     s.store_id,
     s.store_name,
@@ -26,7 +28,9 @@ GROUP BY s.store_id, s.store_name
 ORDER BY total_revenue DESC
 LIMIT 2;
 
--- Q3: Month-over-month sales trend across all stores
+-------------------------------------------------------
+## Q3: Month-over-month sales trend across all stores
+-------------------------------------------------------
 SELECT
     d.year,
     d.month,
